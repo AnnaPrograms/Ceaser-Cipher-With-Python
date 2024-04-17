@@ -1,11 +1,3 @@
-"""
-
-Lab 4
-Name: Anna Stow 
-Class: CSCI 161: Computer Science II - 11335 - Spr24 Online
-
-"""
-
 user_string = input("Please enter a message to find the frequency of words: ").lower()
 
 
