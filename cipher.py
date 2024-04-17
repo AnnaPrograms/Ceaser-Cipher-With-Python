@@ -1,24 +1,25 @@
-user_string = input("Please enter a message to find the frequency of words: ").lower()
+# grabs user input
+message = list(input("Please enter message: ").lower())
+shift = int(input("Please enter the shift: "))
 
-
-# removes punctuation
-user_string = "".join(filter(lambda x: x.isalpha() or x.isspace(), user_string)).split()
-
-# empty dictionary data base
-db = {}
-
-# removes duplicates as a constraint
-new_string = set(user_string)
+for i in range(len(message)):
     
-for i in new_string:
-    
-    # adds frequencies to the database dictionary
-    db[i] = user_string.count(i)
+    # skips all the spaces and symbols
+    if message[i] != " " and ord(message[i]) > 65:
+        
+        # if the shift would result in an ASCII number greater than z (which would give back other symbols)
+        if (ord(message[i]) + shift) > ord("z"):
+            
+            # then just determine how much is it over and then add the "over" shift starting at a
+            message[i] = chr((ord(message[i]) + shift - ord("z")) + ord("a") - 1)
+        else: 
+            
+            # else just shift the letter down the alphabet
+            message[i] = chr(ord(message[i]) + shift)
+    else: 
+        message[i] = message[i]
+        
+# puts it all back into a nice string
+message = "".join(message)
 
-# grabs second value in dict to sort by min, then reverse to switch to max
-for i, j in sorted(db.items(), key = lambda x: x[1], reverse = True):
-
-    # display's sorted dict
-    print(f"{i} : {j}")
-
-
+print(message)
